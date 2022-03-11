@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 use App\Entity\Pin;
+use App\Form\PinType;
 use App\Repository\PinRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -30,10 +31,7 @@ class PinsController extends AbstractController
     public function create(Request $request, EntityManagerInterface $em): Response
     {
         $pin = new  Pin;
-        $form = $this->createFormBuilder($pin)
-        ->add('title', TextType::class)
-        ->add('description', TextareaType::class)
-        ->getForm();
+        $form = $this->createForm(PinType::class, $pin);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -56,14 +54,11 @@ class PinsController extends AbstractController
     }
 
     /**
-     * @Route("/pins/{id<[0-9]+>}/edit", name="app_pins_edit", methods="GET|POST")
+     * @Route("/pins/{id<[0-9]+>}/edit", name="app_pins_edit", methods="GET|PUT|POST")
      */
     public function edit(EntityManagerInterface $em, Request $request, Pin $pin): Response
     {
-        $form = $this->createFormBuilder($pin)
-        ->add('title', TextType::class)
-        ->add('description', TextareaType::class)
-        ->getForm();
+        $form = $this->createForm(PinType::class, $pin);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
