@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\Timestampable;
 use App\Repository\PinRepository;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
@@ -13,6 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Pin
 {
+    use Timestampable;
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -30,15 +32,6 @@ class Pin
      */
     private $description;
 
-    /**
-     * @ORM\Column(type="datetime_immutable", options={"default": "CURRENT_TIMESTAMP"})
-     */
-    private $createdAt;
-
-    /**
-     * @ORM\Column(type="datetime_immutable", options={"default": "CURRENT_TIMESTAMP"})
-     */
-    private $updatedAt;
 
     // /**
     //  * @ORM\Column(type="datetime", options={"default": "CURRENT_TIMESTAMP"})
@@ -114,41 +107,5 @@ class Pin
     //     $this->setUpdatedAt(new \DateTimeImmutable);
     // }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    public function getUpdatedAt(): ?\DateTimeImmutable
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * @ORM\PrePersist
-     * @ORM\PreUpdate
-     */
-    public function updateTimestamps()
-    {
-        if ($this->getCreatedAt() === null ) {
-            $this->setCreatedAt(new \DateTimeImmutable);
-        }
-
-        $this->setUpdatedAt(new \DateTimeImmutable);
-    }
 
 }
