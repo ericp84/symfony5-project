@@ -37,7 +37,6 @@ class Pin
      */
     private $description;
 
-
     // /**
     //  * @ORM\Column(type="datetime", options={"default": "CURRENT_TIMESTAMP"})
     //  */
@@ -58,7 +57,7 @@ class Pin
         return $this->title;
     }
 
-    public function setTitle(string $title): self
+    public function setTitle(?string $title): self
     {
         $this->title = $title;
 
@@ -70,7 +69,7 @@ class Pin
         return $this->description;
     }
 
-    public function setDescription(string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 

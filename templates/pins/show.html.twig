@@ -8,7 +8,6 @@
         <h1>{{pin.title}}</h1>
         <p>{{pin.description}}</p>
         <a href="{{path('app_pins_edit', {id: pin.id}) }}">Edit</a>
-        <a href="{{path('app_home')}}">Back</a>
         <a href="#" onclick="event.preventDefault(); confirm('Etes vous sur ?') && document.getElementById('js-pin-delete-form').submit();" >Delete</a>
     </article>
             <form id="js-pin-delete-form" action="{{path('app_pins_delete', {id: pin.id})}}" method="post" style="display: none;">
