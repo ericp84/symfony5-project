@@ -25,3 +25,6 @@
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
+###> custom ignore ###$
+/public/uploads/
+###> end custom ignore ###
