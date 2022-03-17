@@ -9,7 +9,6 @@
     </style>
     {% if pins|length > 0 %}
         <h1 class="text-center text-muted mb-4">{{pluralize(pins|length, 'Pin')}}</h1>
-
         {% for row in pins|batch(3) %}
             <div class="row mb-5">
                 {% for pin in row %}
