@@ -11,11 +11,6 @@
             <h1 class="text-center mt-5 mb-3">Connectez vous !</h1>
             <p class="text-center text-muted mb-5"> Vos pins vous attendent 😊</p>
             <form method="post">
-                {# {% if app.user %}
-                    <div class="mb-3">
-                        Vous êtes connecté en tant que  {{ app.user.fullName }}, <a href="{{ path('app_logout') }}">Logout</a>
-                    </div>
-                {% endif %} #}
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" value="{{ last_username }}" name="email" id="email" class="form-control" autocomplete="email" required autofocus>
