@@ -24,7 +24,7 @@
             }) }}
             {{ form_row(registrationForm.agreeTerms) }}
             <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-primary">Register</button>
+                <button type="submit" class="btn btn-primary" formnovalidate>Register</button>
             </div>
             <p class="text-center text-muted mt-5 mb-3">Vous avez deja un compte ? <a href="{{ path('app_login') }}">cliquez ici !</a></p>
         {{ form_end(registrationForm) }}
