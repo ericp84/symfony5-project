@@ -3,20 +3,24 @@
 {% block title %}Reset your password{% endblock %}
 
 {% block body %}
-    {% for flash_error in app.flashes('reset_password_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
-    <h1>Reset your password</h1>
-
-    {{ form_start(requestForm) }}
-        {{ form_row(requestForm.email) }}
-        <div>
-            <small>
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <h1 class="text-center mb-3 mt-5">Réinitialisation du mot de passe</h1>
+            {% for flash_error in app.flashes('reset_password_error') %}
+                <div class="alert alert-error mb-3 rounded" role="alert">{{ flash_error }}</div>
+            {% endfor %}
+            <p class="text-muted text-center mb-5">
                 Enter your email address and we will send you a
                 link to reset your password.
-            </small>
+            </p>
+            {{ form_start(requestForm) }}
+            {{ form_row(requestForm.email) }}
+                <div>
+                </div>
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-lg btn-primary">Send password reset email</button>
+                </div>
+            {{ form_end(requestForm) }}
         </div>
-
-        <button class="btn btn-primary">Send password reset email</button>
-    {{ form_end(requestForm) }}
+    </div>
 {% endblock %}
