@@ -12,17 +12,15 @@ class LogoutEventSubscriber implements EventSubscriberInterface
 {
     private $urlGenerator;
 
-    public function __construct(UrlGeneratorInterface $urlGenerator)
+    public function __construct(FlashBagInterface $flashBag,UrlGeneratorInterface $urlGenerator)
     {
+        $this->flashBag = $flashBag;
         $this->urlGenerator = $urlGenerator;
     }
 
     public function onLogoutEvent(LogoutEvent $event)
     {
-        $event->getRequest()->getSession()->getFlashBag()->add(
-            'success',
-            'Déconnexion réussie ! 🔌'
-        );
+        $this->flashBag->add('success', 'Déconnecté avec succés 🔌');
         
         $event->setResponse(new RedirectResponse($this->urlGenerator->generate('app_home')));
     }
