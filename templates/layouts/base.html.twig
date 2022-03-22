@@ -20,14 +20,14 @@
         {{include('partials/_footer.html.twig')}}
         {% block javascripts %}
             <script>
-                const alerts = document.querySelectorAll('[class*="alert-"]')
-                for (const alert of alerts) {
-                    setTimeout( function () {
-                        alert.remove();
-                    }, 2000);
-                }
-                console.log(alerts)
-            </script>
+                 const alerts = document.querySelectorAll('[class*="alert-"]')
+                 for (const alert of alerts) {
+                     setTimeout( function () {
+                         alert.remove();
+                     }, 1000);
+                 }
+                 console.log(alerts)
+             </script>
             {{encore_entry_script_tags('app')}}
         {% endblock %}
     </body>
