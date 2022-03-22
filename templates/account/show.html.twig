@@ -10,8 +10,9 @@
         <img src={{app.user.getGravatar(200)}} alt="{{ app.user.fullName }}'s avatar" class="rounded-circle shadow ">
         <p class="lead mt-5">{{ app.user.email }}</p>
         <h2 class="m-5">{{ app.user.fullName }}</h2>
+        <p><small>🕙 Compte actif depuis le {{ app.user.createdAt|date('d/m/Y') }}</small></p>
         <p>
-            <a href="#">Editer votre compte</a> | <a href="#">Modifier le mot de passe</a>
+            <a href="{{ path('app_account_edit') }}">Editer votre compte</a> | <a href="#">Modifier le mot de passe</a>
         </p>
     </div>
 </div>
