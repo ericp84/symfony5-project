@@ -19,6 +19,9 @@ class ChangePasswordFormType extends AbstractType
             $builder
             ->add('currentPassword', PasswordType::class, [
                 'label' => 'Mot de passe actuel',
+                'attr' => [
+                    'autocomplete' => 'off'
+                ],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Merci de saisir votre mot de passe actuel',
@@ -63,5 +66,6 @@ class ChangePasswordFormType extends AbstractType
         $resolver->setDefaults([
             'current_password_required' => false
         ]);
+        $resolver->setAllowedTypes('current_password_required', 'bool');
     }
 }
