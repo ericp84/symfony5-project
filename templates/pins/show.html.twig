@@ -22,7 +22,7 @@
                     <p class="text-break">
                     {{pin.description}}
                     </p>
-                    {% if app.user == pin.user %}
+                    {% if is_granted('PIN_MANAGER', pin) %}
                     <div class="py-3">
                         <a href="{{path('app_pins_edit', {id: pin.id}) }}" class="btn btn-light">Edit</a>
                         <a href="#" onclick="event.preventDefault(); confirm('Etes vous sur ?') && document.getElementById('js-pin-delete-form').submit();" class="btn btn-light">Delete</a>
