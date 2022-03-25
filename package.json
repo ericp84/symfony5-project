@@ -20,5 +20,9 @@
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production --progress"
+    },
+    "engines": {
+        "node": "14.17.0",
+        "npm": "8.1.4"
     }
 }
