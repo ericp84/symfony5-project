@@ -37,8 +37,13 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        #- { path: ^/account, roles: ROLE_USER }
+        #- { path: ^/login$, roles: PUBLIC_ACCESS }  n'ouvrir que l'accés a login
+        #- { path: ^/account/edit$, roles: IS_AUTHENTICATED_FULLY}  n'accéder à cette route que si il est complétement identifier (pas de rememberme)
+        #- { path: ^/, roles: ROLE_USER } n'accède a rien si pas connecté (donc n'a accés qu'a la page de connexion)
         #- { path: ^/profile, roles: ROLE_USER }
+    # role_hierarchy:
+    #     ROLE_ADMIN: [ROLE_USER, ROLE_ALLOWED_TO_SWITCH, ROLE_VALIDATION]
+    #     ROLE_USER: [ROLE_POST, ROLE_MANAGE, ROLE_CREATE]    
 
 when@test:
     security:

@@ -3,12 +3,16 @@
 {% block title pin.title %}
 
 {% block body %}
+    <div class="d-flex justify-content-between mb-5">
+        <a href="{{ path('app_home') }}"><button class="btn btn-warning btn-lg shadow">Retour à l'accueil</button></a>
+    </div>
+    <h1 class="text-center text-muted mb-3">{{ pin.title }}</h1>
     <div class="row">
         <div class="col-md-6 mx-auto">
-            <article class="pin bg-white rounded shadow">
-                <div class="mw-100 rounded-top overflow-hidden">
+            <article class="pin bg-light rounded shadow-lg">
+                <div class="mw-100 rounded-top overflow-hidden align-items-center justify-content-center d-flex">
                     <img src="{{ (pin.imageName ? vich_uploader_asset(pin) : asset('build/images/unavailable.webp')) | 
-                    imagine_filter('squared_thumbnail_medium')}}" alt="{{pin.title}}" class="w-100">
+                    imagine_filter('squared_thumbnail_medium')}}" alt="{{pin.title}}" class="w-75">
                 </div>
                 <div class="p-3">
                     <h1 class="h5 text-secondary text-decoration-none">{{pin.title}}</h1>
@@ -24,8 +28,8 @@
                     </p>
                     {% if is_granted('PIN_MANAGER', pin) %}
                     <div class="py-3">
-                        <a href="{{path('app_pins_edit', {id: pin.id}) }}" class="btn btn-light">Edit</a>
-                        <a href="#" onclick="event.preventDefault(); confirm('Etes vous sur ?') && document.getElementById('js-pin-delete-form').submit();" class="btn btn-light">Delete</a>
+                        <a href="{{path('app_pins_edit', {id: pin.id}) }}" class="btn btn-info">Edit</a>
+                        <a href="#" onclick="event.preventDefault(); confirm('Etes vous sur ?') && document.getElementById('js-pin-delete-form').submit();" class="btn btn-danger">Delete</a>
                         <form id="js-pin-delete-form" action="{{path('app_pins_delete', {id: pin.id})}}" method="post" style="display: none;">
                             <input type="hidden" name="csrf_token" value="{{csrf_token('pin_deletion_' ~ pin.id)}}">
                             <input type="hidden" name="_method" value="DELETE">

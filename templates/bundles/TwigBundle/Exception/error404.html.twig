@@ -1,10 +1,12 @@
 {% extends 'layouts/base.html.twig' %}
 
 {% block body %}
-    <h1>Page not found</h1>
-
-    <p>
-        The requested page couldn't be located. Checkout for any URL
-        misspelling or <a href="{{ path('app_home') }}">return to the homepage</a>.
-    </p>
+    <div class="row">
+        <div class="col-md-6 mx-auto bg-info rounded m-5">
+            <h1 class="m-5 text-center">Problème 😕</h1>
+            <p class="m-5 text-center">
+                OOPS! il semble qu'il y ait une erreur.<a href="{{ path('app_home') }}">retour à l'accueil</a>.
+            </p>
+        </div>
+    </div>
 {% endblock %}

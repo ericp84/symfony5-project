@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @IsGranted("ROLE_USER")
@@ -28,7 +29,7 @@ class AccountController extends AbstractController
     }
 
     /**
-     * @Route("/account/edit", name="app_account_edit", methods={"GET", "POST"})
+     * @Route("/account/edit", name="app_account_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, EntityManagerInterface $em): Response
     {
@@ -49,14 +50,14 @@ class AccountController extends AbstractController
     }
 
     /**
-     * @Route("/account/change-password", name="app_account_change_password", methods={"GET","POST"})
+     * @Route("/account/change-password", name="app_account_change_password", methods={"GET","PATCH", "POST"})
      */
     public function changePassword(Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $userPasswordHasher) : Response
     {
         $user = $this->getUser();
 
         $form = $this->createForm(ChangePasswordFormType::class, null, [
-            'current_password_required' => true
+            'current_password_required' => true,
         ]);
 
         $form->handleRequest($request);
@@ -65,6 +66,7 @@ class AccountController extends AbstractController
                 $user->setPassword(
                 $userPasswordHasher->hashPassword($user, $form['plainPassword']->getData())
             );
+            
             $em->flush();
             $this->addFlash('success', 'Votre mot de passe à bien été modifié ! 🔑');
 
