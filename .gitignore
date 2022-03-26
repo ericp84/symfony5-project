@@ -30,5 +30,5 @@ yarn-error.log
 ###> end custom ignore ###
 
 ###> liip/imagine-bundle ###
-/public/media/cache/
+# /public/media/cache/
 ###< liip/imagine-bundle ###
