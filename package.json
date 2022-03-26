@@ -22,7 +22,7 @@
         "build": "encore production --progress"
     },
     "engines": {
-        "node": "14.17.0",
-        "npm": "8.1.4"
+        "node": "14.17.*",
+        "npm": "8.1.*"
     }
 }
