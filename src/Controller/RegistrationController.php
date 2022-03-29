@@ -37,11 +37,11 @@ class RegistrationController extends AbstractController
             $this->addFlash('error', 'oops, il semble que vous soyez deja connecté 😀');
             return $this->redirectToRoute('app_home');
         }
+        
 
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
             $user->setPassword(
@@ -50,10 +50,10 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
-
             $em->persist($user);
             $em->flush();
             // generate a signed url and email it to the user
+
             $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
                 (new TemplatedEmail())
                     ->from(new Address(
@@ -64,6 +64,7 @@ class RegistrationController extends AbstractController
                     ->subject('Please Confirm your Email')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
+
             // do anything else you need here, like send an email
             $this->addFlash('success', 'Un mail de confirmation vient de vous être envoyé 📧');
             return $userAuthenticator->authenticateUser(

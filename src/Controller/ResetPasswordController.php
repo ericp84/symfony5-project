@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -50,18 +51,18 @@ class ResetPasswordController extends AbstractController
         }
         $form = $this->createForm(ResetPasswordRequestFormType::class);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             return $this->processSendingPasswordResetEmail(
                 $form->get('email')->getData(),
                 $mailer,
-                $translator
-            );
+                $translator     
+            );                
         }
-
+        
         return $this->render('reset_password/request.html.twig', [
             'requestForm' => $form->createView(),
         ]);
+
     }
 
     /**
@@ -181,9 +182,7 @@ class ResetPasswordController extends AbstractController
             ->htmlTemplate('reset_password/email.html.twig')
             ->context([
                 'resetToken' => $resetToken,
-            ])
-        ;
-
+            ]);
         $mailer->send($email);
 
         // Store the token object in session for retrieval in check-email route.
