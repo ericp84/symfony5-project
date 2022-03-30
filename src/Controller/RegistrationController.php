@@ -61,7 +61,7 @@ class RegistrationController extends AbstractController
                         $this->getParameter('app.mail_from_name'),  
                     ))
                     ->to($user->getEmail())
-                    ->subject('Please Confirm your Email')
+                    ->subject('Confirmez votre adresse 📧')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
 

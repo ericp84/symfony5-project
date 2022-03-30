@@ -1,11 +1,12 @@
-<h1>Hi! Please confirm your email!</h1>
+        <h1>Hello ! confirmez votre adresse mail</h1>
+        <p>
+            Confirmez votre adresse mail en cliquant sur le lien suivant <br><br>
+            <a href="{{ signedUrl }}">Confirmer mon adresse mail</a>.
+            ce lien expirera dans {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
+        </p>
+        <p>
+            La team pintabook !
+        </p>
 
-<p>
-    Please confirm your email address by clicking the following link: <br><br>
-    <a href="{{ signedUrl }}">Confirm my Email</a>.
-    This link will expire in {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
-</p>
 
-<p>
-    Cheers!
-</p>
+
